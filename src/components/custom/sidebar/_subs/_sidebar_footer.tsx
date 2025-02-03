@@ -1,46 +1,28 @@
-import {
-    SidebarFooter,
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem
-} from "@/components/ui/sidebar.tsx";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger
-} from "@/components/ui/dropdown-menu.tsx";
-import {ChevronUp} from "lucide-react";
+import { Button } from '@/components/ui/button';
+
+import { Link } from 'react-router-dom';
+import {useAuth} from "@/contexts/AuthContext.tsx";
 
 export function SubSidebarFooter() {
+    const { isAuthenticated, user } = useAuth();
+
+    if (!isAuthenticated) {
+	  return (
+		  <div className="p-4">
+			<Link to="/login">
+			    <Button variant="outline" className="w-full">
+				  Login
+			    </Button>
+			</Link>
+		  </div>
+	  );
+    }
+
+    // If logged in, display user info and maybe a logout button.
     return (
-	    <SidebarFooter>
-		  <SidebarMenu>
-			<SidebarMenuItem>
-			    <DropdownMenu>
-				  <DropdownMenuTrigger asChild>
-					<SidebarMenuButton>
-					    Username
-					    <ChevronUp className="ml-auto"/>
-					</SidebarMenuButton>
-				  </DropdownMenuTrigger>
-				  <DropdownMenuContent
-					  side="top"
-					  className="w-[--radix-popper-anchor-width]"
-				  >
-					<DropdownMenuItem>
-					    <span>Account</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-					    <span>Billing</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem>
-					    <span>Sign out</span>
-					</DropdownMenuItem>
-				  </DropdownMenuContent>
-			    </DropdownMenu>
-			</SidebarMenuItem>
-		  </SidebarMenu>
-	    </SidebarFooter>
-    )
+	    <div className="p-4">
+		  <p className="text-sm">Logged in as {user?.name}</p>
+		  {/* Optionally add a logout button */}
+	    </div>
+    );
 }

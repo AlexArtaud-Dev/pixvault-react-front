@@ -1,22 +1,38 @@
-import { StrictMode } from 'react';
+// src/main.tsx
+import { StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './index.css';
-import App from './App';
-import About from './pages/public/about/About';
-import Contact from './pages/public/contact/Contact';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './layout/layout';
+import './index.css';
+import {AuthProvider} from "@/contexts/AuthContext.tsx";
+import {routes} from "@/router/routes.tsx";
+import {ProtectedRoute} from "@/components/custom/routes/protected-route.tsx";
 
 createRoot(document.getElementById('root')!).render(
       <StrictMode>
-         <Router>
-            <Layout>
-               <Routes>
-                  <Route path="/" element={<App />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/contact" element={<Contact />} />
-               </Routes>
-            </Layout>
-         </Router>
+          <Router>
+              <AuthProvider>
+                  <Layout>
+                      <Suspense fallback={<div>Loading...</div>}>
+                          <Routes>
+                              {routes.map((route, index) => {
+                                  if (route.protected) {
+                                      // Wrap the protected route with the ProtectedRoute element
+                                      return (
+                                            <Route
+                                                  key={index}
+                                                  element={<ProtectedRoute allowedRoles={route.allowedRoles} />}
+                                            >
+                                                <Route path={route.path} element={route.element} />
+                                            </Route>
+                                      );
+                                  }
+                                  return <Route key={index} path={route.path} element={route.element} />;
+                              })}
+                          </Routes>
+                      </Suspense>
+                  </Layout>
+              </AuthProvider>
+          </Router>
       </StrictMode>,
 );
