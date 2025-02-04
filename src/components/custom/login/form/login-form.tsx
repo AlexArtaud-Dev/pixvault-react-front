@@ -44,7 +44,7 @@ export function LoginForm() {
     return (
 	    <Form {...form}>
 		  <form onSubmit={form.handleSubmit(onSubmit)} className="w-1/3 rounded-md border p-4 space-y-4">
-			<h1 className="text-2xl font-bold text-center">Login</h1>
+			<h1 className="text-2xl font-bold text-center">LOGIN</h1>
 
 			<FormField
 				control={form.control}
@@ -55,7 +55,7 @@ export function LoginForm() {
 					    <FormControl>
 						  <Input placeholder="you@example.com" {...field} />
 					    </FormControl>
-					    <FormMessage/>
+					    <FormMessage className="dark:text-red-600"/>
 					</FormItem>
 				)}
 			/>
@@ -74,7 +74,7 @@ export function LoginForm() {
 				)}
 			/>
 
-			<Button type="submit" className="w-full">
+			<Button type="submit" className="w-full dark:text-black">
 			    Login
 			</Button>
 		  </form>

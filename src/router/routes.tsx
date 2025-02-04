@@ -16,7 +16,7 @@ export interface AppRoute {
 }
 
 // Use lazy-loading for code splitting. Adjust the import paths as needed.
-const Home = lazy(() => import('@/App'));
+const Home = lazy(() => import('@/pages/public/home/Home.tsx'));
 const About = lazy(() => import('@/pages/public/about/About'));
 const Contact = lazy(() => import('@/pages/public/contact/Contact'));
 const Login = lazy(() => import('@/pages/public/login/Login'));

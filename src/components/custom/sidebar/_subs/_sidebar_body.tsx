@@ -56,7 +56,7 @@ export function SubSidebarBody({sidebarItemGroups}: SubSidebarBodyProps) {
 				<SidebarMenuButton asChild isActive={pathname === item.url}>
 				    <Link to={item.url} className="flex items-center space-x-2">
 					  <item.icon/>
-					  <span>{item.title}</span>
+					  <span className="font-semibold">{item.title}</span>
 				    </Link>
 				</SidebarMenuButton>
 			) : (
@@ -64,7 +64,7 @@ export function SubSidebarBody({sidebarItemGroups}: SubSidebarBodyProps) {
 				<SidebarMenuButton asChild disabled isActive={pathname === item.url}>
             <span className="flex items-center space-x-2 text-gray-400 cursor-not-allowed">
               <item.icon/>
-              <span>{item.title}</span>
+              <span className="font-semibold">{item.title}</span>
             </span>
 				</SidebarMenuButton>
 			)}
@@ -81,7 +81,7 @@ export function SubSidebarBody({sidebarItemGroups}: SubSidebarBodyProps) {
 					    <>
 						  {/* For collapsible groups, render the label as a trigger */}
 						  <SidebarGroupLabel asChild>
-							<CollapsibleTrigger className="flex items-center">
+							<CollapsibleTrigger className="flex items-center font-semibold !text-md	">
 							    {group.label}
 							    <ChevronDown
 								    className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180"/>

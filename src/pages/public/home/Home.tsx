@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import './App.css'
 import {Button} from "@/components/ui/button.tsx";
 
-function App() {
+function Home() {
   const [count, setCount] = useState(0)
 
   return (
@@ -13,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+export default Home

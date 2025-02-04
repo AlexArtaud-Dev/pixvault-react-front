@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { routes } from './routes.tsx';
 import { ProtectedRoute } from '@/components/custom/routes/protected-route';
 import Login from "@/pages/public/login/Login.tsx";
-import App from "@/App.tsx";
+import Home from "@/pages/public/home/Home.tsx";
 import About from "@/pages/public/about/About.tsx";
 import Contact from "@/pages/public/contact/Contact.tsx";
 import AdminPanel from "@/pages/private/admin/AdminPanel.tsx";
@@ -16,7 +16,7 @@ const AppRouter = () => {
 
 			{/* Protected routes (requires login) */}
 			<Route element={<ProtectedRoute />}>
-			    <Route path={routes.home.path} element={<App />} />
+			    <Route path={routes.home.path} element={<Home />} />
 			    <Route path={routes.about.path} element={<About />} />
 			    <Route path={routes.contact.path} element={<Contact />} />
 			</Route>
