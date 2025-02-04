@@ -1,5 +1,5 @@
 // src/pages/public/login/Login.tsx
-import { LoginForm } from "@/components/custom/login/form/login-form";
+import { LoginForm } from "@/components/custom/login/form/login-form.tsx";
 
 function Login() {
     return (

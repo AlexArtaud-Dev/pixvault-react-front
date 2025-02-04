@@ -11,6 +11,7 @@ import {
     TrophyIcon,
     UsersIcon,
 } from "lucide-react";
+import NotFound from "@/pages/public/errors/notFound/NotFound.tsx";
 
 export interface AppRoute {
     path: string;
@@ -24,8 +25,8 @@ export interface AppRoute {
 
 // Use lazy-loading for code splitting. Adjust the import paths as needed.
 const Home = lazy(() => import('@/pages/public/home/Home.tsx'));
-const Login = lazy(() => import('@/pages/public/login/Login'));
-const Unauthorized = lazy(() => import('@/pages/public/unauthorized/Unauthorized'));
+const Login = lazy(() => import('@/pages/public/authentication/login/Login'));
+const Unauthorized = lazy(() => import('@/pages/public/errors/unauthorized/Unauthorized'));
 const Dashboard = lazy(() => import('@/pages/private/admin/dashboard/Dashboard.tsx'));
 const GlobalRanking = lazy(() => import('@/pages/public/galleries/global/GlobalRanking.tsx'));
 const ViewedRanking = lazy(() => import('@/pages/public/galleries/viewed/ViewedRanking.tsx'));
@@ -109,6 +110,11 @@ export const routes: AppRoute[] = [
 	  name: 'Unauthorized',
 	  element: <Unauthorized/>,
     },
+    {
+	  path: '/not-found',
+	  name: 'Not Found',
+	  element: <NotFound/>,
+    },
 ];
 
 export const sidebarItemGroups: SidebarItemGroup[] = [
@@ -122,6 +128,7 @@ export const sidebarItemGroups: SidebarItemGroup[] = [
 		{title: "Most Upvoted", url: "/top/upvote", icon: TrendingUpIcon,},
 		{title: "Most Extended", url: "/top/extend", icon: RepeatIcon,},
 		{title: "Most Recent", url: "/top/recent", icon: ClockArrowUpIcon,},
+		{title: "Most ttt", url: "/top/tttt", icon: ClockArrowUpIcon,},
 	  ]
     },
     {
