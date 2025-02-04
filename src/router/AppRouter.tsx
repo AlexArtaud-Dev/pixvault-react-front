@@ -5,7 +5,7 @@ import Login from "@/pages/public/login/Login.tsx";
 import Home from "@/pages/public/home/Home.tsx";
 import About from "@/pages/public/about/About.tsx";
 import Contact from "@/pages/public/contact/Contact.tsx";
-import AdminPanel from "@/pages/private/admin/AdminPanel.tsx";
+import AdminPanel from "@/pages/private/admin/dashboard/Dashboard.tsx";
 
 const AppRouter = () => {
     return (

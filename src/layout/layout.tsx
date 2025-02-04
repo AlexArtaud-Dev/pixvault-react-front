@@ -7,7 +7,7 @@ export default function Layout({children}: { children: React.ReactNode }) {
 	    <SidebarProvider>
 		  <AppSidebar/>
 		  <main className="w-full h-[100vh] p-4">
-			<SidebarTrigger/>
+			{/*<SidebarTrigger/>*/}
 			{children}
 		  </main>
 		  <Toaster />

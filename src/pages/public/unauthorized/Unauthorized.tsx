@@ -1,8 +1,9 @@
+import { Unauthorized as UnauthorizedMessage } from "@/components/custom/errors/unauthorized/unauthorized.tsx";
+
 function Unauthorized() {
     return (
-	    <div className="p-4">
-		  <h1>Unauthorized</h1>
-		  <p>You do not have permission to view this page.</p>
+	    <div className="w-full h-full flex flex-row items-center justify-center">
+		  <UnauthorizedMessage />
 	    </div>
     );
 }

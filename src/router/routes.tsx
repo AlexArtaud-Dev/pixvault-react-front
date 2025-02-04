@@ -1,9 +1,16 @@
 // src/routes/routes.ts
-import React from 'react';
-import {lazy} from 'react';
-import {SidebarItemGroup} from "@/types/components/sidebar/type.ts";
-import {ContactIcon, HomeIcon, InfoIcon, ShieldIcon} from "lucide-react";
-import AdminPanel from "@/pages/private/admin/AdminPanel.tsx";
+import React, { lazy } from 'react';
+import { SidebarItemGroup } from "@/types/components/sidebar/type.ts";
+import {
+    ClockArrowUpIcon,
+    EyeIcon,
+    LayoutDashboardIcon,
+    OctagonAlertIcon,
+    RepeatIcon,
+    TrendingUpIcon,
+    TrophyIcon,
+    UsersIcon,
+} from "lucide-react";
 
 export interface AppRoute {
     path: string;
@@ -17,10 +24,16 @@ export interface AppRoute {
 
 // Use lazy-loading for code splitting. Adjust the import paths as needed.
 const Home = lazy(() => import('@/pages/public/home/Home.tsx'));
-const About = lazy(() => import('@/pages/public/about/About'));
-const Contact = lazy(() => import('@/pages/public/contact/Contact'));
 const Login = lazy(() => import('@/pages/public/login/Login'));
 const Unauthorized = lazy(() => import('@/pages/public/unauthorized/Unauthorized'));
+const Dashboard = lazy(() => import('@/pages/private/admin/dashboard/Dashboard.tsx'));
+const GlobalRanking = lazy(() => import('@/pages/public/galleries/global/GlobalRanking.tsx'));
+const ViewedRanking = lazy(() => import('@/pages/public/galleries/viewed/ViewedRanking.tsx'));
+const UpvotedRanking = lazy(() => import('@/pages/public/galleries/upvoted/UpvotedRanking.tsx'));
+const ExtendedRanking = lazy(() => import('@/pages/public/galleries/extended/ExtendedRanking.tsx'));
+const RecentRanking = lazy(() => import('@/pages/public/galleries/recent/RecentRanking.tsx'));
+const Users = lazy(() => import('@/pages/private/admin/users/Users.tsx'));
+const Reports = lazy(() => import('@/pages/private/admin/reports/Reports.tsx'));
 
 export const routes: AppRoute[] = [
     {
@@ -31,23 +44,60 @@ export const routes: AppRoute[] = [
 	  allowedRoles: [],
     },
     {
-	  path: '/about',
-	  name: 'About',
-	  element: <About/>,
-	  protected: true,
-	  allowedRoles: ['user', 'admin'],
+	  path: '/top',
+	  name: 'Global Ranking',
+	  element: <GlobalRanking/>,
+	  protected: false,
+	  allowedRoles: [],
     },
     {
-	  path: '/contact',
-	  name: 'Contact',
-	  element: <Contact/>,
-	  protected: true,
-	  allowedRoles: ['user', 'admin'],
+	  path: '/top/view',
+	  name: 'Most Viewed',
+	  element: <ViewedRanking/>,
+	  protected: false,
+	  allowedRoles: [],
     },
     {
-	  path: '/admin',
-	  name: 'Admin',
-	  element: <AdminPanel/>,
+	  path: '/top/upvote',
+	  name: 'Most Upvoted',
+	  element: <UpvotedRanking/>,
+	  protected: false,
+	  allowedRoles: [],
+    },
+    {
+	  path: '/top/extend',
+	  name: 'Most Extended',
+	  element: <ExtendedRanking/>,
+	  protected: false,
+	  allowedRoles: [],
+    },
+    {
+	  path: '/top/recent',
+	  name: 'Most Recent',
+	  element: <RecentRanking/>,
+	  protected: false,
+	  allowedRoles: [],
+    },
+    {
+	  path: '/admin/dashboard',
+	  name: 'Dashboard',
+	  element: <Dashboard/>,
+	  protected: true,
+	  allowedRoles: ["admin"],
+    },
+    {
+	  path: '/admin/users',
+	  name: 'Users',
+	  element: <Users/>,
+	  protected: true,
+	  allowedRoles: ["admin"],
+    },
+    {
+	  path: '/admin/reports',
+	  name: 'Reports',
+	  element: <Reports/>,
+	  protected: true,
+	  allowedRoles: ["admin"],
     },
     {
 	  path: '/login',
@@ -63,13 +113,15 @@ export const routes: AppRoute[] = [
 
 export const sidebarItemGroups: SidebarItemGroup[] = [
     {
-	  label: "Application",
+	  label: "Galleries",
 	  collapsible: true,
 	  defaultOpen: true,
 	  items: [
-		{title: "Home", url: "/", icon: HomeIcon,},
-		{title: "About", url: "/about", icon: InfoIcon,},
-		{title: "Contact", url: "/contact", icon: ContactIcon,},
+		{title: "Global Ranking", url: "/top", icon: TrophyIcon,},
+		{title: "Most Viewed", url: "/top/view", icon: EyeIcon,},
+		{title: "Most Upvoted", url: "/top/upvote", icon: TrendingUpIcon,},
+		{title: "Most Extended", url: "/top/extend", icon: RepeatIcon,},
+		{title: "Most Recent", url: "/top/recent", icon: ClockArrowUpIcon,},
 	  ]
     },
     {
@@ -77,7 +129,9 @@ export const sidebarItemGroups: SidebarItemGroup[] = [
 	  collapsible: true,
 	  defaultOpen: false,
 	  items: [
-		{title: "Administration page", url: "/admin", icon: ShieldIcon,},
+		{title: "Dashboard", url: "/admin/dashboard", icon: LayoutDashboardIcon,},
+		{title: "Users", url: "/admin/users", icon: UsersIcon,},
+		{title: "Reports", url: "/admin/reports", icon: OctagonAlertIcon,},
 	  ],
 	  allowedRoles: ['admin'],
     }
