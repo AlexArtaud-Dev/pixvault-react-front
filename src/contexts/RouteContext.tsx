@@ -2,7 +2,7 @@ import React, { createContext, useContext } from 'react';
 import { routes, AppRoute } from '@/router/routes.tsx';
 
 type RouteContextType = {
-    routes: { [key: string]: AppRoute };
+    routes: AppRoute[];
 };
 
 const RouteContext = createContext<RouteContextType | undefined>(undefined);
