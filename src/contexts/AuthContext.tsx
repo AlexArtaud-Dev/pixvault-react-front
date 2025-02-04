@@ -27,6 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const login = async (credentials: LoginCredentials) => {
 	  // TODO: Replace this mock call with a real API call to your NestJS backend.
 	  // For example, use fetch/axios to send { email, password } and then store the user data.
+	  console.log('Logging in with:', credentials);
 	  setUser({
 		id: '1',
 		name: 'John Doe',

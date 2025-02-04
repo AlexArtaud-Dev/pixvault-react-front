@@ -1,4 +1,4 @@
-import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar"
+import {SidebarProvider} from "@/components/ui/sidebar"
 import {AppSidebar} from "@/components/custom/sidebar/app-sidebar.tsx";
 import {Toaster} from "@/components/ui/toaster.tsx";
 
